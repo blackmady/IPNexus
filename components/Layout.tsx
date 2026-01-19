@@ -76,17 +76,20 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onChangeView, la
                     <span>{LANGUAGES.find(l => l.code === lang)?.flag}</span>
                     <span className="uppercase">{lang.split('-')[0]}</span>
                 </button>
-                <div className="absolute right-0 top-full mt-2 w-40 bg-[#0f172a] border border-glassBorder rounded-xl shadow-xl overflow-hidden hidden group-hover:block animate-fade-in z-50">
-                    {LANGUAGES.map((l) => (
-                        <button
-                            key={l.code}
-                            onClick={() => onLangChange(l.code)}
-                            className={`w-full text-left px-4 py-2 text-sm flex items-center gap-3 hover:bg-white/10 transition-colors ${lang === l.code ? 'text-neonBlue bg-white/5' : 'text-gray-400'}`}
-                        >
-                            <span>{l.flag}</span>
-                            <span>{l.label}</span>
-                        </button>
-                    ))}
+                {/* Wrapper with padding-top to bridge the hover gap */}
+                <div className="absolute right-0 top-full pt-2 w-40 hidden group-hover:block animate-fade-in z-50">
+                    <div className="bg-[#0f172a] border border-glassBorder rounded-xl shadow-xl overflow-hidden">
+                        {LANGUAGES.map((l) => (
+                            <button
+                                key={l.code}
+                                onClick={() => onLangChange(l.code)}
+                                className={`w-full text-left px-4 py-2 text-sm flex items-center gap-3 hover:bg-white/10 transition-colors ${lang === l.code ? 'text-neonBlue bg-white/5' : 'text-gray-400'}`}
+                            >
+                                <span>{l.flag}</span>
+                                <span>{l.label}</span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
